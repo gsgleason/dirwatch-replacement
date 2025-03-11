@@ -1,0 +1,15 @@
+[Unit]
+Description=Watches directory for changes
+
+[Service]
+Environment=WATCH_DIR=/path/to/dir
+Environment=WATCH_CONFIG=/path/to/yaml.conf
+Type=exec
+ExecStartPre=test -d "${WATCH_DIR}"
+ExecStartPre=test -f "${WATCH_CONFIG}"
+ExecStartPre=echo Watching "${WATCH_DIR}"
+ExecStartPre=echo Using Configuration "${WATCH_CONFIG}"
+ExecStart=/path/to/watch.sh "${WATCH_DIR}" "${WATCH_CONFIG}"
+
+[Install]
+WantedBy=multi-user.target
