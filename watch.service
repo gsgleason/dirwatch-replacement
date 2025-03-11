@@ -3,7 +3,7 @@ Description=Watches directory for changes
 
 [Service]
 Environment=WATCH_DIR=/path/to/dir
-Environment=WATCH_CONFIG=/path/to/yaml.conf
+Environment=WATCH_CONFIG=/path/to/watch.conf
 Type=exec
 ExecStartPre=test -d "${WATCH_DIR}"
 ExecStartPre=test -f "${WATCH_CONFIG}"
